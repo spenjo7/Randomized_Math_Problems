@@ -1,0 +1,1 @@
+## 2021-12-08: Adding specific .html pages for each type of Math operation ( Adding, Subtraction, Multiplication,  and Division). Previously there was only one .html page, which created one column of randomized questions for each operation Type.
