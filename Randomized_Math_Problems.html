@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Random Math</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="styles.css?v=1.0">
+	<style>
+		h3{
+			margin-left: 100px;
+		}
+
+		span{
+			margin-left: 300px;
+		}
+
+		table{
+			margin-left: 20px;
+			margin-top: 20px;
+		}
+
+		td {
+			border:  1px solid black;
+		}
+
+		tr {
+			min-height: 5px;
+		}
+
+		td {
+			height: 80px;
+			width:  200px;
+			padding-left: 5px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<h3>Name:_________	<span>Date:______</span></h3>
+	<table id="tbl">
+		
+	</table>
+
+	<script>
+		
+	const tbl = document.getElementById('tbl')
+
+	const flip = () => { 
+		let r = Math.random() > 0.5? 1 : -1
+		return r
+	}
+
+	const spawn = (length,tag,parent) => {
+		let arr = Array.from({length}, ()=> {
+			let child = document.createElement(tag)
+			parent.appendChild(child)
+			return child
+		}) 
+		return arr
+	}
+
+
+	const equation = (n1,n2, type) => {
+		let txt;
+		switch(type){
+			case "A":
+				txt = `${n1} + ${n2}`
+			break;
+
+			case "D":
+				txt = `${n1 * n2} ÷ ${n1}`
+			break;
+
+			case "M":
+				txt = `${n1} x ${n2}`
+			break;
+
+			case "S":
+				let max = Math.max(n1, n2)
+				let min = Math.min(n1,n2)
+				txt = `${max} - ${min}`
+			break;
+
+			default:
+				console.error(`${type} is not a valid equation() "type"`)
+		}
+	
+		return `${txt} = ______`
+	}
+
+	const rows = spawn(10,'tr', tbl)
+
+	rows.forEach(tr => {
+	 	spawn(4, 'td', tr)
+	})
+
+	const cells = [...document.querySelectorAll('td')]
+
+
+	let genRandomNumberArray = (length, max, min) => {
+		let numbers = Array.from({length}, ()=> {
+			let r = max-min
+			let n = Math.floor( Math.random() * r ) + min
+			return n
+		})
+		return numbers
+	}
+
+	let numArr = genRandomNumberArray(cells.length * 2,15,3)
+
+
+	cells.forEach((el,ind) => {
+		let x = numArr.pop()
+		let y = numArr.pop()
+		let ops = ["A","S","M","D"]
+
+		el.innerText = equation(x,y, ops[ind%4])
+	})
+
+
+	</script>
+</body>
+</html>
