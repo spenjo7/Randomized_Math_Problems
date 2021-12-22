@@ -24,14 +24,10 @@
 	<script>
 		
 	const tbl = document.getElementById('tbl')
+	const ops = ["M","D","M","D"]
 
-	cells.forEach((el,ind) => {
-		let x = numArr.pop()
-		let y = numArr.pop()
-		let ops = ["A","S","M","D"]
+	init(ops,tbl)
 
-		el.innerText = equation(x,y, "M")
-	})
 
 
 	</script>

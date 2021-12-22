@@ -24,14 +24,9 @@
 	<script>
 		
 	const tbl = document.getElementById('tbl')
+	const ops = ["A"]
 
-	cells.forEach((el,ind) => {
-		let x = numArr.pop()
-		let y = numArr.pop()
-		let ops = ["A","S","M","D"]
-
-		el.innerText = equation(x,y, "A")
-	})
+	init(ops,tbl)
 
 
 	</script>
